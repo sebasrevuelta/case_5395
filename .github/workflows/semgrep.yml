@@ -1,6 +1,6 @@
 on:
   workflow_dispatch: {}
-  pull_request: {}
+  pull_request_target: {}
   push:
     branches:
     - main
@@ -21,4 +21,4 @@ jobs:
       image: returntocorp/semgrep
     steps:
     - uses: actions/checkout@v3
-    - run: semgrep ci
+    - run: semgrep ci --config /root/rules.yaml --no-suppress-errors --exclude spec/* --exclude frontend/test/* --disable-version-check --disable-nosem --quiet --json
